@@ -11,12 +11,12 @@ export default class App extends React.Component {
   state = {
     loggedInUserId: null,
     token: null,
-    allgamedata: {}
+    allgamedata: []
   }
 
   componentDidMount() {
 	// TEMPORARY FETCH FOR TESTING NEED TO POPULATE ARRAY
-	fetch("http://localhost:3000/games/1")
+	fetch("http://localhost:3000/users/1")
 		.then(response=>response.json())
 		.then((gamedata)=>this.initializeState(gamedata))
   }
@@ -25,7 +25,7 @@ export default class App extends React.Component {
 	this.setState({
 		loggedInUserId: localStorage.loggedInUserId,
 		token: localStorage.token,
-		allgamedata: gamedata
+		allgamedata: gamedata.games
 	  })
   }
 
