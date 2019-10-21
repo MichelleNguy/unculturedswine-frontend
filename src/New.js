@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class New extends Component {
 
@@ -21,7 +22,23 @@ export default class New extends Component {
             ]})
             return
         }
-        this.props.createNewGame(this.state.surname)
+        let fetchData = {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json",
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: this.props.loggedInUserId,
+                surname: this.state.surname
+            })
+        }
+        fetch(`http://localhost:3000/games`, fetchData)
+            .then( res => res.json())
+            .then( gameObject => {
+                this.props.chooseGame(gameObject.id)
+                this.props.history.push('/game')
+            })
     }
 
 

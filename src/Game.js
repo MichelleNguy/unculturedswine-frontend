@@ -9,7 +9,7 @@ export default class Game extends Component {
 
     componentDidMount(){
         // GRAB GAME ID PASSED IN FROM APP
-        fetch("http://localhost:3000/games/1")
+        fetch(`http://localhost:3000/games/${this.props.id}`)
             .then(response=>response.json())
             .then((fetchedgamedata)=>{this.setState({  gamedata: fetchedgamedata })})
     }

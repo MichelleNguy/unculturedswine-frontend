@@ -12,7 +12,7 @@ export default class App extends React.Component {
   state = {
     loggedInUserId: null,
     token: null,
-    allgamedata: []
+    gameId: null
   }
 
   componentDidMount() {
@@ -46,26 +46,21 @@ export default class App extends React.Component {
         <Switch>
           <Route path="/" exact render={({ history }) =>  this.renderLogin(history) } />
           <Route path="/mainmenu" exact render={ this.renderMainMenu }/>
-          <Route path="/new" exact render={ this.renderNewGameForm } />
-          <Route path="/game" exact render={ this.renderGame } />
+          <Route path="/new" exact render={({ history }) => this.renderNewGameForm(history) } />
+          <Route path="/game" exact render={ this.renderGame} />
           <Route component={ DangerZone } />
         </Switch>
       </div>
     )
   }
 
-  createNewGame = (surname) => {
-    console.log("creating new game with data.. ", surname)
-    //need to fetch a post here to create
+  renderNewGameForm = (passedHistory) => {
+    return <New history={passedHistory} loggedInUserId={this.state.loggedInUserId} chooseGame={this.chooseGame}/>
   }
 
-  renderNewGameForm = () => {
-    return <New createNewGame={this.createNewGame}/>
-  }
-
-  chooseGame = (gameId) => {
+  chooseGame = (id) => {
     //set gameID here in state
-    console.log(gameId)
+    this.setState({gameId: id})
   }
 
   renderMainMenu = () => {
@@ -73,7 +68,7 @@ export default class App extends React.Component {
   }
 
   renderGame = () => {
-    return <Game />
+    return <Game id={this.state.gameId}/>
   }
 
   renderLogin = (history) => {
