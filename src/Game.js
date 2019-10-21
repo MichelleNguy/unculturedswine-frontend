@@ -19,7 +19,7 @@ export default class Game extends Component {
         return (
             <div>
                 <Hud gamedata ={this.state.gamedata} />
-                <Input />
+                <Input gamedata ={this.state.gamedata} />
             </div>
         )
     }
