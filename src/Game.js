@@ -18,7 +18,7 @@ export default class Game extends Component {
     render() {
         return (
             <div>
-                <Hud />
+                <Hud gamedata ={this.state.gamedata} />
                 <Input />
             </div>
         )
