@@ -4,6 +4,7 @@ import DangerZone from './DangerZone'
 import Login from './Login'
 import MainMenu from './MainMenu'
 import Game from './Game'
+import New from './New'
 import { Route, NavLink, Switch } from 'react-router-dom'
 
 export default class App extends React.Component {
@@ -45,6 +46,7 @@ export default class App extends React.Component {
         <Switch>
           <Route path="/" exact render={({ history }) =>  this.renderLogin(history) } />
           <Route path="/mainmenu" exact render={ this.renderMainMenu }/>
+          <Route path="/new" exact render={ this.renderNewGameForm } />
           <Route path="/game" exact render={ this.renderGame } />
           <Route component={ DangerZone } />
         </Switch>
@@ -52,12 +54,26 @@ export default class App extends React.Component {
     )
   }
 
-  renderGame = () => {
-    return <Game />
+  createNewGame = (surname) => {
+    console.log("creating new game with data.. ", surname)
+    //need to fetch a post here to create
+  }
+
+  renderNewGameForm = () => {
+    return <New createNewGame={this.createNewGame}/>
+  }
+
+  chooseGame = (gameId) => {
+    //set gameID here in state
+    console.log(gameId)
   }
 
   renderMainMenu = () => {
-    return <MainMenu token={this.state.token} loggedInUserId={this.state.loggedInUserId} />
+    return <MainMenu token={this.state.token} loggedInUserId={this.state.loggedInUserId} chooseGame={this.chooseGame}/>
+  }
+
+  renderGame = () => {
+    return <Game />
   }
 
   renderLogin = (history) => {
