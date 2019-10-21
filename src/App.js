@@ -10,14 +10,23 @@ export default class App extends React.Component {
 
   state = {
     loggedInUserId: null,
-    token: null
+    token: null,
+    allgamedata: {}
   }
 
   componentDidMount() {
-    this.setState({
-      loggedInUserId: localStorage.loggedInUserId,
-      token: localStorage.token,
-    })
+	// TEMPORARY FETCH FOR TESTING NEED TO POPULATE ARRAY
+	fetch("http://localhost:3000/games/1")
+		.then(response=>response.json())
+		.then((gamedata)=>this.initializeState(gamedata))
+  }
+
+  initializeState=(gamedata)=>{
+	this.setState({
+		loggedInUserId: localStorage.loggedInUserId,
+		token: localStorage.token,
+		allgamedata: gamedata
+	  })
   }
 
   setToken = (token, userId) => {
