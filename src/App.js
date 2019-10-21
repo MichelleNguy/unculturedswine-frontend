@@ -16,7 +16,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-	// TEMPORARY FETCH FOR TESTING NEED TO POPULATE ARRAY
+	// TEMPORARY FETCH FOR TESTING NEED TO POVIDE USER ID
 	fetch("http://localhost:3000/users/1")
 		.then(response=>response.json())
 		.then((gamedata)=>this.initializeState(gamedata))
