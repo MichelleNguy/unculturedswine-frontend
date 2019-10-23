@@ -22,7 +22,26 @@ export default class Game extends Component {
 
     handleEventSubmit=(event, selectedEvents)=>{
         event.preventDefault()
-        console.log("submitted form", selectedEvents)
+        console.log("submitted form", this.state.gamedata.id)
+
+        if(selectedEvents.length > 0){
+                console.log("attempting fetch", this.state.gamedata.id)
+                fetch("http://localhost:3000/games/" + `${this.state.gamedata.id}`,{
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        id: this.state.gamedata.id,
+                        events: selectedEvents
+                    }),
+                    headers:{
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                .then(response=>response.json())
+                .then(console.log)
+        }
+        
+
+
         return 
     }
 
