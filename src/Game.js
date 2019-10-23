@@ -20,14 +20,18 @@ export default class Game extends Component {
             .then((fetchedeventdata)=>{this.setState({  eventdata: fetchedeventdata })})
     }
 
-
-
+    handleEventSubmit=(event, selectedEvents)=>{
+        event.preventDefault()
+        console.log("submitted form", selectedEvents)
+        return 
+    }
 
     render() {
+        // NEED TO CHANGE WAY EVENTDATA IS SELECTED
         return (
             <div>
                 <Hud gamedata ={this.state.gamedata} />
-                <Input eventdata ={this.state.eventdata.slice(0, 5)} />
+                <Input eventdata ={this.state.eventdata.slice(0, 5)} handleEventSubmit={this.handleEventSubmit }  />
             </div>
         )
     }
