@@ -29,8 +29,8 @@ export default class Game extends Component {
                 fetch("http://localhost:3000/games/" + `${this.state.gamedata.id}`,{
                     method: "PATCH",
                     body: JSON.stringify({
-                        id: this.state.gamedata.id,
-                        events: selectedEvents
+                        "id": this.state.gamedata.id,
+                        "events": selectedEvents
                     }),
                     headers:{
                         "Content-type": "application/json; charset=UTF-8"
