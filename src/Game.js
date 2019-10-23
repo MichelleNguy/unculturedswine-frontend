@@ -26,11 +26,14 @@ export default class Game extends Component {
 
         if(selectedEvents.length > 0){
                 console.log("attempting fetch", this.state.gamedata.id)
-                fetch("http://localhost:3000/games/" + `${this.state.gamedata.id}`,{
-                    method: "PATCH",
+                fetch("http://localhost:3000/joingameevents/",{
+                    method: "POST",
                     body: JSON.stringify({
-                        id: this.state.gamedata.id,
-                        events: selectedEvents
+                        "joingameevent": {
+                            "user_id": this.state.gamedata.id,
+                            "event_id": 4
+                        }
+                        
                     }),
                     headers:{
                         "Content-type": "application/json; charset=UTF-8"
