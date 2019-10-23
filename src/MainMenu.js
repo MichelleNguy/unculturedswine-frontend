@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { directive } from '@babel/types';
 
 export default class MainMenu extends Component {
 
@@ -34,10 +35,10 @@ export default class MainMenu extends Component {
     createContinueButton = (data) => {
         return (
             <li>
+                <button key={data.id} onClick={() => this.deleteGame(data.id)} >DELETE SAVE</button>
                 <Link to='/game'>
                     <button key={data.id} onClick={() => this.props.chooseGame(data.id)} >{data.surname}</button>
                 </Link>
-                <button key={data.id} onClick={() => this.deleteGame(data.id)} >DELETE</button>
             </li>
         )
     }
@@ -45,12 +46,15 @@ export default class MainMenu extends Component {
 
     render() {
         return (
-            <ul>
-                <Link to='/new'>
-                    <button key={"new"}type="button" className="btn btn-info">new</button>
-                </Link>
-                { this.state.games.map( game => this.createContinueButton(game)) }
-            </ul>
+            <React.Fragment>
+                <h1>Please choose an option below:</h1>
+                <ul id="main-menu">
+                    <Link to='/new'>
+                        <button key={"new"}type="button" className="btn btn-info">NEW GAME</button>
+                    </Link>
+                    { this.state.games.map( game => this.createContinueButton(game)) }
+                </ul>
+            </React.Fragment>
         )
     }
 }

@@ -44,7 +44,8 @@ export default class New extends Component {
 
     render() {
         return (
-            <div>
+            <div id="new-game">
+                <h1>Pick your family's surname</h1>
                 {!this.state.errors.empty ? this.state.errors : ""}
                 <form onSubmit={evt => this.handleSubmit(evt)}>
                     <input onChange={evt => this.handleChange(evt)} type="text" name="surname" placeholder="family surname" value={this.state.surname}></input>

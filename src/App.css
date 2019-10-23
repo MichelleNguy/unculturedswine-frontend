@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro&display=swap');
+
 .App {
   text-align: center;
+  margin: auto;
+  border: 5px solid darkgray;
+  width: 90%;
+  height: 100vh;
+}
+
+* {
+  color: darkgray;
+  font-family: 'Anonymous Pro', monospace;
 }
 
 .App-logo {
@@ -38,3 +49,16 @@ th {
   color: white;
 }
 
+#main-menu {
+  list-style: none;
+}
+
+button, input[type="submit"]{
+  margin: 2px;
+  border: 1px solid gray;
+  border-radius: 2px;
+}
+
+button:hover, input[type="submit"]:hover {
+  border-color: red;
+}
