@@ -9,6 +9,7 @@ export default class Input extends Component {
         event3: false,
         event4: false,
         event5: false,
+        currentEvents: []
      }
 
      componentDidUpdate(){
@@ -32,10 +33,13 @@ export default class Input extends Component {
         return eventArr
      }
 
+
+
     render() {
-        let eventdata = this.props.eventdata
         
-        if(eventdata.length <= 1){
+        //this.props.eventdata
+        
+        if(this.props.eventdata.length <= 1){
             return( <section>  </section>)
         }
         else{

@@ -38,19 +38,51 @@ export default class Game extends Component {
                     }
                 })
                 .then(response=>response.json())
-                .then(console.log)
+                .then(returnedData => {
+                    let obj = JSON.parse(returnedData.event.effect, (key, value) => {
+                        return key, value
+                    })
+                    for(const [k, v] of Object.entries(obj)) {
+                        if (this.state.gamedata[k]) {
+                            console.log("hit")
+                            this.setState({
+                                [k] : this.state.gamedata[k] += v
+                            })
+                        }
+                    }
+                    this.saveGame()
+                })
             });
                 
         }
         return 
     }
 
+    saveGame = () => {
+        let fetchData = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
+            },
+            body: JSON.stringify(this.state.gamedata)
+        }
+        fetch(`http://localhost:3000/games/${this.props.id}`, fetchData)
+            .then(res => res.json())
+            .then(newGame => {
+                this.setState({
+                    gamedata: newGame
+                })
+            })
+    }
+
     render() {
         // NEED TO CHANGE WAY EVENTDATA IS SELECTED
+        console.log(this.state.gamedata.wealth)
         return (
             <div>
                 <Hud gamedata ={this.state.gamedata} />
-                <Input eventdata ={this.state.eventdata.slice(0, 5)} handleEventSubmit={this.handleEventSubmit }  />
+                <Input eventdata ={this.state.eventdata.slice(0, 5)} handleEventSubmit={this.handleEventSubmit}  />
             </div>
         )
     }
