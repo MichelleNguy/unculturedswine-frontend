@@ -43,39 +43,39 @@ export default class Input extends Component {
                 <section>
                     
                     <h2> Choose your family's destiny:  </h2>
-                    <form onSubmit={(event)=>this.props.handleEventSubmit(event, this.createEventArray())} >
+                    <form id="event-form" onSubmit={(event)=>this.props.handleEventSubmit(event, this.createEventArray())} >
                     <label>  
                             <input name="event1" type="checkbox" checked={this.state.event1} onChange={this.handleCheck}  />
                                 { this.props.eventdata[0].title }
-                            <div >
+                            <div className="event-desc">
                                 { this.props.eventdata[0].description}
                             </div> 
                         </label>
                         <label>  
                             <input name="event2" type="checkbox" checked={this.state.event2} onChange={this.handleCheck}  />
                             { this.props.eventdata[1].title }
-                            <div >
+                            <div className="event-desc">
                                 { this.props.eventdata[1].description}
                             </div>
                         </label>
                         <label>  
                             <input name="event3" type="checkbox" checked={this.state.event3} onChange={this.handleCheck}  />
                             { this.props.eventdata[2].title }
-                            <div >
+                            <div className="event-desc">
                                 { this.props.eventdata[2].description}
                             </div>
                         </label>
                         <label>  
                             <input name="event4" type="checkbox" checked={this.state.event4} onChange={this.handleCheck}  />
                             { this.props.eventdata[3].title }
-                            <div >
+                            <div className="event-desc">
                                  { this.props.eventdata[3].description}
                             </div>
                         </label>
                         <label>  
                             <input name="event5" type="checkbox" checked={this.state.event5} onChange={this.handleCheck}  />
                             { this.props.eventdata[4].title }
-                            <div>
+                            <div className="event-desc">
                                 { this.props.eventdata[4].description}
                             </div>
                         </label>

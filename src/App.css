@@ -62,3 +62,13 @@ button, input[type="submit"]{
 button:hover, input[type="submit"]:hover {
   border-color: red;
 }
+
+#event-form {
+  text-align: left;
+  color: darkgray;
+}
+
+.event-desc {
+  color: red;
+  padding: 10px;
+}
