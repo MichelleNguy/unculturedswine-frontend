@@ -25,15 +25,13 @@ export default class Game extends Component {
         console.log("submitted form", this.state.gamedata.id)
 
         if(selectedEvents.length > 0){
+            selectedEvents.forEach((event) => {
                 console.log("attempting fetch", this.state.gamedata.id)
                 fetch("http://localhost:3000/joingameevents/",{
                     method: "POST",
                     body: JSON.stringify({
-                        "joingameevent": {
-                            "user_id": this.state.gamedata.id,
-                            "event_id": 4
-                        }
-                        
+                        "game_id": this.state.gamedata.id,
+                        "event_id": event.id
                     }),
                     headers:{
                         "Content-type": "application/json; charset=UTF-8"
@@ -41,10 +39,9 @@ export default class Game extends Component {
                 })
                 .then(response=>response.json())
                 .then(console.log)
+            });
+                
         }
-        
-
-
         return 
     }
 
